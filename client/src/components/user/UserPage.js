@@ -17,11 +17,11 @@ const UserPage = (props) => {
     },[dispatch])
 
     useEffect(()=>{
-        if(Object.keys(user).length){
+        if(user.role === 'admin'){
             dispatch(startGetUsers())
         }
     },[dispatch])
-    
+
     return (
         <div>
             <h2>User Page</h2>

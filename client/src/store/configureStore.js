@@ -6,6 +6,7 @@ import countriesReducer from "../reducers/countriesReducer"
 import statesReducer from "../reducers/statesReducer"
 import citiesReducer from "../reducers/citiesReducer"
 import userReducer from "../reducers/userReducer"
+import usersReducer from "../reducers/usersReducer"
 
 const configureStore = () => {
     return createStore(combineReducers({
@@ -13,7 +14,8 @@ const configureStore = () => {
         countries : countriesReducer,
         states : statesReducer,
         cities : citiesReducer,
-        user : userReducer
+        user : userReducer,
+        users : usersReducer
     }), applyMiddleware(thunk))
 }
 

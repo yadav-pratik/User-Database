@@ -8,9 +8,16 @@ export const startGetUsers = () => {
                     authorization : localStorage.getItem('token')
                 }
             })
-            console.log(data)
+            dispatch(setUsers(data))
         } catch (error) {
             alert(error)
         }
+    }
+}
+
+const setUsers = (data) => {
+    return {
+        type : 'SET_USERS',
+        payload : data
     }
 }
