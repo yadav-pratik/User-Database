@@ -1,5 +1,5 @@
 const User = require('../models/user')
-const { pick } = require('lodash')
+const { pick, omit } = require('lodash')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -49,6 +49,16 @@ userController.login = async (req, res) => {
                 notice : "Invalid Login Credentials."
             })
         }
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+userController.account = async (req, res) => {
+    try {
+        const user = await User.findById(req.tokenData._id)
+        const userObj = JSON.parse(JSON.stringify(user))
+        res.json(omit(userObj, ['password']))
     } catch (error) {
         res.json(error)
     }
