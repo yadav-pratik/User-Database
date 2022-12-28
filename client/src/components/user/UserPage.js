@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { Link, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { startGetUser } from '../../actions/userActions'
 
-import UsersTable from './UsersTable'
+import { startGetUser } from '../../actions/userActions'
+import { startGetUsers } from '../../actions/usersActions'
 
 const UserPage = (props) => {
     const dispatch = useDispatch()
@@ -15,6 +15,13 @@ const UserPage = (props) => {
     useEffect(()=>{
         dispatch(startGetUser())
     },[dispatch])
+
+    useEffect(()=>{
+        if(Object.keys(user).length){
+            dispatch(startGetUsers())
+        }
+    },[dispatch])
+    
     return (
         <div>
             <h2>User Page</h2>
