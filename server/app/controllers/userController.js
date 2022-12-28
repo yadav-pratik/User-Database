@@ -66,7 +66,7 @@ userController.account = async (req, res) => {
 
 userController.list = async (req, res) => {
     try {
-        const users = await User.find({role : 'user'})
+        const users = await User.find({role : 'user'}, {password : 0})
         res.json(users)
     } catch (error) {
         res.json(error)
