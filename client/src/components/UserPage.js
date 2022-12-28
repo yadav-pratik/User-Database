@@ -5,6 +5,10 @@ import { startGetUser } from '../actions/userActions'
 const UserPage = (props) => {
     const dispatch = useDispatch()
 
+    const user = useSelector((state)=> {
+        return state.user
+    })
+
     useEffect(()=>{
         dispatch(startGetUser())
     },[])

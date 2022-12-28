@@ -11,6 +11,10 @@ const NavBar = (props) => {
         return state.isLogged
     })
 
+    const user = useSelector((state)=>{
+        return state.user
+    })
+
     const handleLogout = () => {
         localStorage.removeItem('token')
         dispatch(toggleIsLogged())
@@ -22,7 +26,7 @@ const NavBar = (props) => {
             <h1>Users Portal</h1>
             {isLogged ? (
                     <div>
-                        <span>Welcome user</span>
+                        <span>Welcome {user.name}</span>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
                 ) : (
