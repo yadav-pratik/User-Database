@@ -12,6 +12,10 @@ const UserPage = (props) => {
         return state.user
     })
 
+    const users = useSelector((state)=> {
+        return state.users
+    })
+
     useEffect(()=>{
         dispatch(startGetUser())
     },[dispatch])
@@ -39,7 +43,21 @@ const UserPage = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                {users.map((user, i) => {
+                                    return <tr
+                                        key={user._id}
+                                    >
+                                        <td>{i+1}</td>
+                                        <td>{user.name}</td>
+                                        <td>{user.mobile}</td>
+                                        <td>{user.loginId}</td>
+                                        <td>show</td>
+                                        <td>
+                                            <button>Edit</button>
+                                            <button>Delete</button>
+                                        </td>
+                                    </tr>
+                                })}
                             </tbody>
                         </table>
                     </div>
