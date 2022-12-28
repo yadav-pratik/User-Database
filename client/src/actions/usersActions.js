@@ -30,6 +30,7 @@ export const startDeleteUser = (id) => {
                     authorization : localStorage.getItem('token')
                 }
             })
+            alert("User Deleted Successfully!")
             dispatch(deleteUser(data._id))
         } catch (error) {
             alert(error)

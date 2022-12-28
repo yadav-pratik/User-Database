@@ -24,7 +24,7 @@ const UserPage = (props) => {
         if(user.role === 'admin'){
             dispatch(startGetUsers())
         }
-    },[dispatch])
+    },[dispatch, user])
 
     const handleDelete = (_id) => {
         dispatch(startDeleteUser(_id))
