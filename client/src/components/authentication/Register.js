@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { startGetCountries } from "../../actions/countriesActions"
 import { startGetStates } from "../../actions/statesActions"
 import { startGetCities } from "../../actions/citiesActions"
+import { startRegisterUser } from "../../actions/userActions"
 
 const Register = (props) => {
     const [name, setName] = useState('')
@@ -116,7 +117,7 @@ const Register = (props) => {
                 name, mobile, loginId, password, country, state, city, description, image
             }
 
-            console.log(formData)
+            dispatch(startRegisterUser(formData))
             
         } else {
             setFormErrors(errors)
