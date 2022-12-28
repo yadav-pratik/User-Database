@@ -1,5 +1,5 @@
 const express = require('express')
-
+const cors = require('cors')
 
 const router = require('./config/routes')
 const configureDB = require('./config/database')
@@ -11,6 +11,7 @@ configureDB()
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 app.use(router)
 
 app.listen(port, ()=>{

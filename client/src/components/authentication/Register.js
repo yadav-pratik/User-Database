@@ -100,9 +100,9 @@ const Register = (props) => {
             errors.city = "You must select one City"
         }
 
-        if(image.length === 0){
-            errors.image = "You must select an image for Profile"
-        }
+        // if(image.length === 0){
+        //     errors.image = "You must select an image for Profile"
+        // }
     }
 
     const handleSubmit = (e) => {
