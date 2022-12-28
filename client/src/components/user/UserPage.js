@@ -8,7 +8,7 @@ import { startGetUsers, startDeleteUser } from '../../actions/usersActions'
 import Modal from '../Modal'
 
 const UserPage = (props) => {
-    const [editToggle, setEditToggle] = useState(true)
+    const [editToggle, setEditToggle] = useState(false)
 
     const dispatch = useDispatch()
 
@@ -29,7 +29,7 @@ const UserPage = (props) => {
     }
 
     const handleEditToggle = (user) => {
-        // setEditToggle(!editToggle)
+        setEditToggle(!editToggle)
     }
  
     return (
@@ -62,11 +62,12 @@ const UserPage = (props) => {
                                             <button onClick={()=>{handleEditToggle(user)}}>Edit</button>
                                             <button onClick={()=>{handleDelete(user._id)}}>Delete</button>
                                         </td>
+                                        {editToggle && <Modal handleEditToggle={handleEditToggle}/>}
                                     </tr>
                                 })}
                             </tbody>
                         </table>
-                        {<Modal/>}
+                        
                     </div>
                 ) : (
                     <div>
