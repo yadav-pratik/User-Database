@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 
+import { toggleIsLogged } from "../../actions/isLoggedActions"
 import { startLoginUser } from "../../actions/userActions"
 
 const Login = (props) => {
@@ -47,6 +48,7 @@ const Login = (props) => {
             const clearAndRedirect = () => {
                 setLoginId('')
                 setPassword('')
+                dispatch(toggleIsLogged())
                 props.history.push('/user-page')
             }
 
