@@ -80,6 +80,10 @@ const Register = (props) => {
 
         if(mobile.length === 0) {
             errors.mobile = "Mobile Number cannot be empty"
+        } else if(mobile.length < 10 || mobile.length > 10){
+            errors.mobile = "Mobile Number should be of 10 digits"
+        } else if(isNaN(mobile)) {
+            errors.mobile = "Invalid Mobile Number"
         }
 
         if(loginId.length === 0) {
