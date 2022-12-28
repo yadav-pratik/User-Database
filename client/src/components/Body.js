@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 import Login from "./authentication/Login";
 import Register from "./authentication/Register";
-import UserPage from "./UserPage";
+import UserPage from "./user/UserPage";
 
 const Body = (props) => {
     return (
