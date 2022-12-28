@@ -8,7 +8,14 @@ export const startRegisterUser = (formData, clearAndRedirect) => {
                     'Accept': 'application/json',
                 }
             })
-            console.log(data)
+            if(data.hasOwnProperty('notice')){
+                alert(data.notice)
+            } else if(data.hasOwnProperty('errors') || data.hasOwnProperty('message')){
+                alert(data.message)
+            } else if(data.hasOwnProperty('success')){
+                alert(data.success)
+                clearAndRedirect()
+            }
         } catch (error) {
             alert(error)
         }

@@ -117,11 +117,25 @@ const Register = (props) => {
         if(Object.keys(errors).length === 0){
             setFormErrors({})
 
+            const clearAndRedirect = () => {
+                setName('')
+                setMobile('')
+                setLoginId('')
+                setPassword('')
+                setCountry('')
+                setState('')
+                setCity('')
+                setDescription('')
+                setImage('')
+
+                props.history.push('/login')
+            }
+
             const formData = {
                 name, mobile, loginId, password, country, state, city, description, image
             }
 
-            dispatch(startRegisterUser(formData))
+            dispatch(startRegisterUser(formData, clearAndRedirect))
             
         } else {
             setFormErrors(errors)
