@@ -85,4 +85,14 @@ userController.update = async (req, res) => {
     }
 }
 
+userController.delete = async (req, res) => {
+    const id = req.params.id
+    try {
+        const user = await User.findByIdAndDelete(id)
+        res.json(user)
+    } catch (error) {
+        res.json(error)
+    }
+}
+
 module.exports = userController
