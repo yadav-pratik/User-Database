@@ -1,4 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
+
+import { startGetCountries } from "../../actions/countriesActions"
 
 const Register = (props) => {
     const [name, setName] = useState('')
@@ -6,6 +9,12 @@ const Register = (props) => {
     const [loginId, setLoginId] = useState('')
     const [password, setPassword] = useState('')
     const [country, setCountry] = useState('')
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(startGetCountries())
+    },[])
 
     const handleChange = (e) => {
         const name = e.target.name
