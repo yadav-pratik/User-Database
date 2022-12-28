@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { startGetUser } from '../../actions/userActions'
 import { startGetUsers, startDeleteUser } from '../../actions/usersActions'
 
+import Modal from '../Modal'
+
 const UserPage = (props) => {
+    const [editToggle, setEditToggle] = useState(true)
+
     const dispatch = useDispatch()
 
     const user = useSelector((state)=> {
@@ -20,16 +24,14 @@ const UserPage = (props) => {
         dispatch(startGetUser())
     },[dispatch])
 
-    useEffect(()=>{
-        if(user.role === 'admin'){
-            dispatch(startGetUsers())
-        }
-    },[dispatch, user])
-
     const handleDelete = (_id) => {
         dispatch(startDeleteUser(_id))
     }
 
+    const handleEditToggle = (user) => {
+        // setEditToggle(!editToggle)
+    }
+ 
     return (
         <div>
             <h2>User Page</h2>
@@ -57,13 +59,14 @@ const UserPage = (props) => {
                                         <td>{user.loginId}</td>
                                         <td>show</td>
                                         <td>
-                                            <button>Edit</button>
+                                            <button onClick={()=>{handleEditToggle(user)}}>Edit</button>
                                             <button onClick={()=>{handleDelete(user._id)}}>Delete</button>
                                         </td>
                                     </tr>
                                 })}
                             </tbody>
                         </table>
+                        {<Modal/>}
                     </div>
                 ) : (
                     <div>

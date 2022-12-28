@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { startGetUsers } from './usersActions'
+
 export const startRegisterUser = (formData, clearAndRedirect) => {
     return async (dispatch) => {
         try {
@@ -49,6 +51,7 @@ export const startGetUser = () => {
                     authorization : localStorage.getItem('token')
                 }
             })
+            dispatch(startGetUsers())
             dispatch(setUser(data))
         } catch (error) {
             alert(error)
@@ -60,5 +63,11 @@ const setUser = (data) => {
     return {
         type : 'SET_USER',
         payload : data
+    }
+}
+
+export const logoutUser = () => {
+    return {
+        type : 'LOGOUT_USER',
     }
 }

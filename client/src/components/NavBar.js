@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
+
 import { toggleIsLogged } from "../actions/isLoggedActions";
+import { logoutUser } from "../actions/userActions";
 
 const NavBar = (props) => {
 
@@ -17,6 +19,7 @@ const NavBar = (props) => {
 
     const handleLogout = () => {
         localStorage.removeItem('token')
+        dispatch(logoutUser())
         dispatch(toggleIsLogged())
         props.history.push('/')
     }
