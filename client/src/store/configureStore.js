@@ -5,13 +5,15 @@ import isLoggedReducer from "../reducers/isLoggedReducer"
 import countriesReducer from "../reducers/countriesReducer"
 import statesReducer from "../reducers/statesReducer"
 import citiesReducer from "../reducers/citiesReducer"
+import userReducer from "../reducers/userReducer"
 
 const configureStore = () => {
     return createStore(combineReducers({
         isLogged : isLoggedReducer,
         countries : countriesReducer,
         states : statesReducer,
-        cities : citiesReducer
+        cities : citiesReducer,
+        user : userReducer
     }), applyMiddleware(thunk))
 }
 

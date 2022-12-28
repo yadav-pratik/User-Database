@@ -15,8 +15,13 @@ const Register = (props) => {
     const [city, setCity] = useState('')
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
+    const [formErrors, setFormErrors] = useState({})
+
+    const errors = {}
 
     const dispatch = useDispatch()
+
+    const validationStyle = {color : 'red', marginTop : '0px', marginBottom : '0px'}
 
     const countries = useSelector((state)=>{
         return state.countries
@@ -66,9 +71,61 @@ const Register = (props) => {
             setImage(e.target.files[0])
         }
     }
+
+    const runValidations = () => {
+        if(name.length === 0) {
+            errors.name = "Name cannot be empty"
+        }
+
+        if(mobile.length === 0) {
+            errors.mobile = "Mobile Number cannot be empty"
+        }
+
+        if(loginId.length === 0) {
+            errors.loginId = "Login Id cannot be empty"
+        }
+
+        if(password.length === 0) {
+            errors.password = "Password cannot be empty"
+        } else if(password.length < 8 || password.length > 128){
+            errors.password = "Password must be between 8 and 128 characters"
+        }
+
+        if(country.length === 0) {
+            errors.country = "You must select one Country"
+        } else if(state.length === 0) {
+            errors.state = "You must select one State"
+        } else if(city.length === 0) {
+            errors.city = "You must select one City"
+        }
+
+        if(image.length === 0){
+            errors.image = "You must select an image for Profile"
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        runValidations()
+
+        if(Object.keys(errors).length === 0){
+            setFormErrors({})
+
+            const formData = {
+                name, mobile, loginId, password, country, state, city, description, image
+            }
+
+            console.log(formData)
+            
+        } else {
+            setFormErrors(errors)
+        }
+    }
+
     return (
         <div>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>Enter your Name</label>
                 <br/>
                 <input
@@ -77,7 +134,7 @@ const Register = (props) => {
                     name = "name"
                     onChange = {handleChange}
                 />
-                <br/>
+                {formErrors.name ? <p style={validationStyle}>{formErrors.name}</p> : <><br/><br/></>}
                 <label>Enter your Mobile no.</label>
                 <br/>
                 <input
@@ -86,7 +143,7 @@ const Register = (props) => {
                     name = "mobile"
                     onChange = {handleChange}
                 />
-                <br/>
+                {formErrors.mobile ? <p style={validationStyle}>{formErrors.mobile}</p> : <><br/><br/></>}
                 <label>Enter a Login Id</label>
                 <br/>
                 <input
@@ -94,17 +151,18 @@ const Register = (props) => {
                     value = {loginId}
                     name = "loginId"
                     onChange = {handleChange}
+                    placeholder="Email Or Username"
                 />
-                <br/>
+                {formErrors.loginId ? <p style={validationStyle}>{formErrors.loginId}</p> : <><br/><br/></>}
                 <label>Enter a Password</label>
                 <br/>
                 <input
-                    type="text"
+                    type="password"
                     value = {password}
                     name = "password"
                     onChange = {handleChange}
                 />
-                <br/>
+                {formErrors.password ? <p style={validationStyle}>{formErrors.password}</p> : <><br/><br/></>}
                 <select value={country} name = "country" onChange={handleChange}>
                     <option value = "">Select your Country</option>
                     {countries.map(c => {
@@ -116,7 +174,7 @@ const Register = (props) => {
                         </option>
                     })}
                 </select>
-                <br/>
+                {formErrors.country ? <p style={validationStyle}>{formErrors.country}</p> : <><br/><br/></>}
                 <select value={state} name = "state" onChange={handleChange}>
                     <option value = "">Select your State</option>
                     {states.map((s, i) => {
@@ -128,7 +186,7 @@ const Register = (props) => {
                         </option>
                     })}
                 </select>
-                <br/>
+                {formErrors.state ? <p style={validationStyle}>{formErrors.state}</p> : <><br/><br/></>}
                 <select value={city} name = "city" onChange={handleChange}>
                     <option value = "">Select your City</option>
                     {cities.map((c, i) => {
@@ -140,7 +198,7 @@ const Register = (props) => {
                         </option>
                     })}
                 </select>
-                <br/>
+                {formErrors.city ? <p style={validationStyle}>{formErrors.city}</p> : <><br/><br/></>}
                 <label>Enter a Description</label>
                 <br/>
                 <textarea
@@ -149,17 +207,16 @@ const Register = (props) => {
                     name="description"
                 >
                 </textarea>
-                <br/>
+                <br/><br/>
                 <label>Select a Picture</label>
                 <br/>
                 <input
                     type="file"
                     accept=".jpg, .jpeg, .png"
-                    value={image}
                     onChange={handleChange}
                     name="image"
                 />
-                <br/>
+                {formErrors.image ? <p style={validationStyle}>{formErrors.image}</p> : <><br/><br/></>}
                 <input
                     type="submit"
                     value="Submit"
