@@ -44,3 +44,27 @@ const deleteUser = (id) => {
         payload : id
     }
 }
+
+export const startUpdateUsers = (formData, clear, id) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.put(`http://localhost:3400/api/user/update/${id}`, formData, {
+                headers : {
+                    authorization : localStorage.getItem('token')
+                }
+            })
+            dispatch(updateUsers(data))
+            clear()
+            alert('User updated successfully.')
+        } catch (error) {
+            alert(error)
+        }
+    }
+}
+
+const updateUsers = (data) => {
+    return {
+        type : 'UPDATE_USERS',
+        payload : data
+    }
+}

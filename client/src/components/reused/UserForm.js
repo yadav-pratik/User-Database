@@ -7,16 +7,26 @@ import { startGetStates } from "../../actions/statesActions"
 import { startGetCities } from "../../actions/citiesActions"
 
 const UserForm = (props) => {
-    const {formSubmit} = props
+    const {
+        _id,
+        name : fullName,
+        mobile : mobileNo,
+        country : countryName,
+        state : stateName,
+        city : cityName,
+        description : descr,
+        formSubmit,
+        handleEditToggle
+    } = props
 
-    const [name, setName] = useState('')
-    const [mobile, setMobile] = useState('')
+    const [name, setName] = useState( fullName ? fullName : '')
+    const [mobile, setMobile] = useState(mobileNo ? mobileNo : '')
     const [loginId, setLoginId] = useState('')
     const [password, setPassword] = useState('')
-    const [country, setCountry] = useState('')
-    const [state, setState] = useState('')
-    const [city, setCity] = useState('')
-    const [description, setDescription] = useState('')
+    const [country, setCountry] = useState(countryName ? countryName : '')
+    const [state, setState] = useState(stateName ? stateName : '')
+    const [city, setCity] = useState(cityName ? cityName : '')
+    const [description, setDescription] = useState(descr ? descr : '')
     const [image, setImage] = useState('')
     const [formErrors, setFormErrors] = useState({})
 
@@ -89,14 +99,16 @@ const UserForm = (props) => {
             errors.mobile = "Invalid Mobile Number"
         }
 
-        if(loginId.length === 0) {
-            errors.loginId = "Login Id cannot be empty"
-        }
+        if(!handleEditToggle){
+            if(loginId.length === 0) {
+                errors.loginId = "Login Id cannot be empty"
+            }
 
-        if(password.length === 0) {
-            errors.password = "Password cannot be empty"
-        } else if(password.length < 8 || password.length > 128){
-            errors.password = "Password must be between 8 and 128 characters"
+            if(password.length === 0) {
+                errors.password = "Password cannot be empty"
+            } else if(password.length < 8 || password.length > 128){
+                errors.password = "Password must be between 8 and 128 characters"
+            }
         }
 
         if(country.length === 0) {
@@ -132,15 +144,18 @@ const UserForm = (props) => {
                 setImage('')
 
                 dispatch(clearCountriesAndState())
-
-                props.history.push('/')
+                if(!handleEditToggle){
+                    props.history.push('/')
+                } else {
+                    handleEditToggle()
+                }
             }
 
             const formData = {
                 name, mobile, loginId, password, country, state, city, description, image
             }
 
-           formSubmit(formData, clearAndRedirect)
+           formSubmit(formData, clearAndRedirect, _id)
             
         } else {
             setFormErrors(errors)
@@ -167,25 +182,27 @@ const UserForm = (props) => {
                     onChange = {handleChange}
                 />
                 {formErrors.mobile ? <p style={validationStyle}>{formErrors.mobile}</p> : <><br/><br/></>}
-                <label>Enter a Login Id</label>
-                <br/>
-                <input
-                    type="text"
-                    value = {loginId}
-                    name = "loginId"
-                    onChange = {handleChange}
-                    placeholder="Email Or Username"
-                />
-                {formErrors.loginId ? <p style={validationStyle}>{formErrors.loginId}</p> : <><br/><br/></>}
-                <label>Enter a Password</label>
-                <br/>
-                <input
-                    type="password"
-                    value = {password}
-                    name = "password"
-                    onChange = {handleChange}
-                />
-                {formErrors.password ? <p style={validationStyle}>{formErrors.password}</p> : <><br/><br/></>}
+                {!handleEditToggle && <>
+                    <label>Enter a Login Id</label>
+                    <br/>
+                    <input
+                        type="text"
+                        value = {loginId}
+                        name = "loginId"
+                        onChange = {handleChange}
+                        placeholder="Email Or Username"
+                    />
+                    {formErrors.loginId ? <p style={validationStyle}>{formErrors.loginId}</p> : <><br/><br/></>}
+                    <label>Enter a Password</label>
+                    <br/>
+                    <input
+                        type="password"
+                        value = {password}
+                        name = "password"
+                        onChange = {handleChange}
+                        />
+                    {formErrors.password ? <p style={validationStyle}>{formErrors.password}</p> : <><br/><br/></>}
+                </>}
                 <select value={country} name = "country" onChange={handleChange}>
                     <option value = "">Select your Country</option>
                     {countries.map(c => {

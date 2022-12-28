@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { startGetUser } from '../../actions/userActions'
 import { startDeleteUser } from '../../actions/usersActions'
 
-import Modal from '../Modal'
+import ModalForm from '../ModalForm'
 
 const UserPage = (props) => {
     const [editToggle, setEditToggle] = useState(false)
+    const [idForModal, setIdForModal] = useState('')
 
     const dispatch = useDispatch()
 
@@ -27,7 +28,8 @@ const UserPage = (props) => {
         dispatch(startDeleteUser(_id))
     }
 
-    const handleEditToggle = (user) => {
+    const handleEditToggle = (id) => {
+        setIdForModal(id)
         setEditToggle(!editToggle)
     }
  
@@ -58,10 +60,10 @@ const UserPage = (props) => {
                                         <td>{user.loginId}</td>
                                         <td>show</td>
                                         <td>
-                                            <button onClick={()=>{handleEditToggle(user)}}>Edit</button>
+                                            <button onClick={()=>{handleEditToggle(user._id)}}>Edit</button>
                                             <button onClick={()=>{handleDelete(user._id)}}>Delete</button>
+                                            {editToggle && idForModal === user._id && <ModalForm handleEditToggle={handleEditToggle} {...user}/>}
                                         </td>
-                                        {editToggle && <Modal handleEditToggle={handleEditToggle}/>}
                                     </tr>
                                 })}
                             </tbody>

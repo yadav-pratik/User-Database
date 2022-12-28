@@ -10,6 +10,15 @@ const usersReducer = (state = initialUserValue, action) => {
                 return user._id !== action.payload
             })
         }
+        case 'UPDATE_USERS' : {
+            return state.map(user => {
+                if(user._id === action.payload._id){
+                    return {...user, ...action.payload}
+                } else {
+                    return {...user}
+                }
+            })
+        }
         default : {
             return [...state]
         }
