@@ -21,3 +21,9 @@ const setCountries = (data) => {
         payload : data
     }
 }
+
+export const clearCountriesAndState = () => {
+    return {
+        type : 'CLEAR_COUNTRY_DATA'
+    }
+} 

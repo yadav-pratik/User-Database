@@ -5,6 +5,9 @@ const statesReducer = (state = initialStatesValue, action) => {
         case 'SET_STATES' : {
             return [...action.payload]
         }
+        case 'CLEAR_COUNTRY_DATA' : {
+            return [...initialStatesValue]
+        }
         default : {
             return state
         }

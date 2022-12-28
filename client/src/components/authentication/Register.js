@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { startGetCountries } from "../../actions/countriesActions"
+import { clearCountriesAndState, startGetCountries } from "../../actions/countriesActions"
 import { startGetStates } from "../../actions/statesActions"
 import { startGetCities } from "../../actions/citiesActions"
 import { startRegisterUser } from "../../actions/userActions"
@@ -127,6 +127,8 @@ const Register = (props) => {
                 setCity('')
                 setDescription('')
                 setImage('')
+
+                dispatch(clearCountriesAndState())
 
                 props.history.push('/')
             }
