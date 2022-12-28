@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { startGetCountries } from "../../actions/countriesActions"
 import { startGetStates } from "../../actions/statesActions"
+import { startGetCities } from "../../actions/citiesActions"
 
 const Register = (props) => {
     const [name, setName] = useState('')
@@ -11,6 +12,9 @@ const Register = (props) => {
     const [password, setPassword] = useState('')
     const [country, setCountry] = useState('')
     const [state, setState] = useState('')
+    const [city, setCity] = useState('')
+    const [description, setDescription] = useState('')
+    const [image, setImage] = useState('')
 
     const dispatch = useDispatch()
 
@@ -19,6 +23,9 @@ const Register = (props) => {
     })
     const states = useSelector((state)=>{
         return state.states
+    })
+    const cities = useSelector((state)=>{
+        return state.cities
     })
 
     useEffect(()=>{
@@ -30,6 +37,12 @@ const Register = (props) => {
             dispatch(startGetStates(country))
         }
     },[country])
+
+    useEffect(()=>{
+        if(state){
+            dispatch(startGetCities(state))
+        }
+    },[state])
 
     const handleChange = (e) => {
         const name = e.target.name
@@ -45,6 +58,12 @@ const Register = (props) => {
             setCountry(e.target.value)
         } else if(name === 'state'){
             setState(e.target.value)
+        } else if(name === 'city'){
+            setCity(e.target.value)
+        } else if(name === 'description'){
+            setDescription(e.target.value)
+        } else if(name === 'image'){
+            setImage(e.target.files[0])
         }
     }
     return (
@@ -109,6 +128,42 @@ const Register = (props) => {
                         </option>
                     })}
                 </select>
+                <br/>
+                <select value={city} name = "city" onChange={handleChange}>
+                    <option value = "">Select your City</option>
+                    {cities.map((c, i) => {
+                        return <option 
+                            key={i}
+                            value={c.city_name}
+                        >
+                            {c.city_name}
+                        </option>
+                    })}
+                </select>
+                <br/>
+                <label>Enter a Description</label>
+                <br/>
+                <textarea
+                    value={description}
+                    onChange={handleChange}
+                    name="description"
+                >
+                </textarea>
+                <br/>
+                <label>Select a Picture</label>
+                <br/>
+                <input
+                    type="file"
+                    accept=".jpg, .jpeg, .png"
+                    value={image}
+                    onChange={handleChange}
+                    name="image"
+                />
+                <br/>
+                <input
+                    type="submit"
+                    value="Submit"
+                />
             </form>
         </div>
     )
