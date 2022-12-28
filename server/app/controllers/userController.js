@@ -73,4 +73,16 @@ userController.list = async (req, res) => {
     }
 }
 
+userController.update = async (req, res) => {
+    const id = req.params.id
+    const body = pick(req.body, ['name', 'mobile', 'country', 'state', 'city', 'description', 'image'])
+    try {
+        const user = await User.findByIdAndUpdate(id, body, {new : true, runValidators: true})
+        const userObj = JSON.parse(JSON.stringify(user))
+        res.json(omit(userObj, ['password']))
+    } catch (error) {
+        res.json(error)
+    }
+}
+
 module.exports = userController
