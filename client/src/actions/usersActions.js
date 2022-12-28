@@ -21,3 +21,25 @@ const setUsers = (data) => {
         payload : data
     }
 }
+
+export const startDeleteUser = (id) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.delete(`http://localhost:3400/api/user/delete/${id}`, {
+                headers : {
+                    authorization : localStorage.getItem('token')
+                }
+            })
+            dispatch(deleteUser(data._id))
+        } catch (error) {
+            alert(error)
+        }
+    }
+}
+
+const deleteUser = (id) => {
+    return {
+        type : 'DELETE_USER',
+        payload : id
+    }
+}

@@ -5,6 +5,11 @@ const usersReducer = (state = initialUserValue, action) => {
         case 'SET_USERS' : {
             return [...action.payload]
         }
+        case 'DELETE_USER' : {
+            return state.filter(user =>  {
+                return user._id !== action.payload
+            })
+        }
         default : {
             return [...state]
         }

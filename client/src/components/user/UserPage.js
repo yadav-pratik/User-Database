@@ -3,7 +3,7 @@ import { Link, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { startGetUser } from '../../actions/userActions'
-import { startGetUsers } from '../../actions/usersActions'
+import { startGetUsers, startDeleteUser } from '../../actions/usersActions'
 
 const UserPage = (props) => {
     const dispatch = useDispatch()
@@ -25,6 +25,10 @@ const UserPage = (props) => {
             dispatch(startGetUsers())
         }
     },[dispatch])
+
+    const handleDelete = (_id) => {
+        dispatch(startDeleteUser(_id))
+    }
 
     return (
         <div>
@@ -54,7 +58,7 @@ const UserPage = (props) => {
                                         <td>show</td>
                                         <td>
                                             <button>Edit</button>
-                                            <button>Delete</button>
+                                            <button onClick={()=>{handleDelete(user._id)}}>Delete</button>
                                         </td>
                                     </tr>
                                 })}
