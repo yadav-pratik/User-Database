@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Link, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { startGetUser } from '../../actions/userActions'
-import { startGetUsers, startDeleteUser } from '../../actions/usersActions'
+import { startDeleteUser } from '../../actions/usersActions'
 
 import Modal from '../Modal'
 
