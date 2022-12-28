@@ -146,6 +146,7 @@ const Register = (props) => {
 
     return (
         <div>
+            <h2>Register as a new Account</h2>
             <form onSubmit={handleSubmit}>
                 <label>Enter your Name</label>
                 <br/>
