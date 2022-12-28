@@ -10,6 +10,6 @@ const router = express.Router()
 router.post('/api/user/register', userController.register)
 router.post('/api/user/login', userController.login)
 router.get('/api/user/account', authenticateUser, userController.account)
-router.get('/api/user/list', authenticateUser, authorizeUser)
+router.get('/api/user/list', authenticateUser, authorizeUser, userController.list)
 
 module.exports = router

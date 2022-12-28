@@ -64,4 +64,13 @@ userController.account = async (req, res) => {
     }
 }
 
+userController.list = async (req, res) => {
+    try {
+        const users = await User.find({role : 'user'})
+        res.json(users)
+    } catch (error) {
+        res.json(error)
+    }
+}
+
 module.exports = userController
