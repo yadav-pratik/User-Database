@@ -8,9 +8,17 @@ userController.register = async (req, res) => {
     try {
         const user = new User(body)
         const userObj = await user.save()
-        res.json(userObj)
+        res.json({
+            success : "Account Added Successfully!!"
+        })
     } catch (error) {
-        res.json(error)
+        if(error.code === 11000) {
+            res.json({
+                notice : 'Email or Username is already taken!'
+            })
+        } else {
+            res.json(error)
+        }
     }
 }
 
