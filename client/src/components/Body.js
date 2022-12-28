@@ -1,9 +1,12 @@
 import React from "react";
+import { Route } from "react-router-dom";
+
+import Register from "./authentication/Register";
 
 const Body = (props) => {
     return (
         <div>
-            Body
+            <Route path="/" component={Register} exact/>
         </div>
     )
 }

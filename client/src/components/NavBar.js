@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
 
 const NavBar = (props) => {
     const isLogged = useSelector((state)=> {
@@ -16,7 +17,12 @@ const NavBar = (props) => {
                     </div>
                 ) : (
                     <div>
-                        Register
+                        {props.location.pathname === '/' ? (
+                                <span>Already a User? <Link to="/login">Login</Link></span>
+                            ) : (
+                                props.location.pathname === '/login' && <span>New here? <Link to="/">Register</Link></span>
+                            )
+                        }
                     </div>
                 )
             }
@@ -24,4 +30,4 @@ const NavBar = (props) => {
     )
 }
 
-export default NavBar
+export default withRouter(NavBar)
