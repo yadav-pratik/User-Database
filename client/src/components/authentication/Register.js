@@ -36,19 +36,19 @@ const Register = (props) => {
 
     useEffect(()=>{
         dispatch(startGetCountries())
-    },[])
+    },[dispatch])
 
     useEffect(()=>{
         if(country){
             dispatch(startGetStates(country))
         }
-    },[country])
+    },[country, dispatch])
 
     useEffect(()=>{
         if(state){
             dispatch(startGetCities(state))
         }
-    },[state])
+    },[state, dispatch])
 
     const handleChange = (e) => {
         const name = e.target.name
