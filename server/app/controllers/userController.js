@@ -1,5 +1,7 @@
 const User = require('../models/user')
 const { pick } = require('lodash')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const userController = {}
 
@@ -19,6 +21,36 @@ userController.register = async (req, res) => {
         } else {
             res.json(error)
         }
+    }
+}
+
+userController.login = async (req, res) => {
+    const body = pick(req.body, ['loginId', 'password'])
+    try {
+        const user = await User.findOne({loginId : body.loginId})
+        if(user){
+            const match = await bcrypt.compare(body.password, user.password)
+            if(match){
+                const tokenData = {
+                    _id : user._id,
+                    role : user.role
+                }
+                const token = jwt.sign(tokenData, 'secret123', {expiresIn : '7d'})
+                res.json({
+                    token : `Bearer ${token}`
+                })
+            } else {
+                res.json({
+                    notice : "Invalid Login Credentials."
+                })
+            }
+        } else {
+            res.json({
+                notice : "Invalid Login Credentials."
+            })
+        }
+    } catch (error) {
+        res.json(error)
     }
 }
 
