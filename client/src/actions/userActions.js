@@ -41,3 +41,24 @@ export const startLoginUser = (formData, clearAndRedirect) => {
     }
 }
 
+export const startGetUser = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get('http://localhost:3400/api/user/account', {
+                headers : {
+                    authorization : localStorage.getItem('token')
+                }
+            })
+            dispatch(setUser(data))
+        } catch (error) {
+            alert(error)
+        }
+    }
+}
+
+const setUser = (data) => {
+    return {
+        type : 'SET_USER',
+        payload : data
+    }
+}
