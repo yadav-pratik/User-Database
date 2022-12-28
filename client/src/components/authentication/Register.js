@@ -128,7 +128,7 @@ const Register = (props) => {
                 setDescription('')
                 setImage('')
 
-                props.history.push('/login')
+                props.history.push('/')
             }
 
             const formData = {

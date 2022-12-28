@@ -18,9 +18,9 @@ const NavBar = (props) => {
                 ) : (
                     <div>
                         {props.location.pathname === '/' ? (
-                                <span>Already a User? <Link to="/login">Login</Link></span>
+                                <span>New here? <Link to="/register">Register</Link></span>
                             ) : (
-                                props.location.pathname === '/login' && <span>New here? <Link to="/">Register</Link></span>
+                                props.location.pathname === '/register' && <span>Already a User? <Link to="/">Login</Link></span>
                             )
                         }
                     </div>

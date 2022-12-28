@@ -22,3 +22,22 @@ export const startRegisterUser = (formData, clearAndRedirect) => {
     }
 }
 
+export const startLoginUser = (formData, clearAndRedirect) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post('http://localhost:3400/api/user/login', formData)
+            if(data.hasOwnProperty('notice')){
+                alert(data.notice)
+            } else if(data.hasOwnProperty('errors') || data.hasOwnProperty('message')){
+                alert(data.message)
+            } else if(data.hasOwnProperty('token')) {
+                localStorage.setItem('token', data.token)
+                alert('Successfully Logged In')
+                clearAndRedirect()
+            }
+        } catch (error) {
+            alert(error)
+        }
+    }
+}
+
