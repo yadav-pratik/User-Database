@@ -106,7 +106,7 @@ const UserPage = (props) => {
                         </table>
                     </div>
                 ) : (
-                    <div>
+                    <div className='mt-5'>
                         <h4>Name - {user.name}</h4>
                         <h4>Login Id - {user.loginId}</h4>
                         <h4>Mobile - {user.mobile}</h4>
