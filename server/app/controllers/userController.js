@@ -6,9 +6,11 @@ const jwt = require('jsonwebtoken')
 const userController = {}
 
 userController.register = async (req, res) => {
-    const body = pick(req.body, ['name', 'mobile', 'loginId', 'password', 'country', 'state', 'city', 'description', 'image'])
+    console.log(req.file)
+    const body = pick(req.body, ['name', 'mobile', 'loginId', 'password', 'country', 'state', 'city', 'description'])
+    const bodyObj = req.file ? {...body, image : req.file.filename} : {...body}
     try {
-        const user = new User(body)
+        const user = new User(bodyObj)
         const userObj = await user.save()
         res.json({
             success : "Account Added Successfully!!"

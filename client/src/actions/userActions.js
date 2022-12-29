@@ -7,7 +7,7 @@ export const startRegisterUser = (formData, clearAndRedirect) => {
         try {
             const { data } = await axios.post('http://localhost:3400/api/user/register', formData, {
                 headers : {
-                    'Accept': 'application/json',
+                    'Content-type' : 'multipart/form-data'
                 }
             })
             if(data.hasOwnProperty('notice')){

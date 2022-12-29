@@ -10,6 +10,7 @@ configureDB()
 
 const app = express()
 
+app.use('/config/public', express.static('config/public'))
 app.use(express.json())
 app.use(cors())
 app.use(router)
