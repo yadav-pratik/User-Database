@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import jsPDF from 'jspdf'
 
 import { startGetUser } from '../../actions/userActions'
 import { startDeleteUser } from '../../actions/usersActions'
@@ -30,6 +31,19 @@ const UserPage = (props) => {
         dispatch(startDeleteUser(_id))
     }
 
+    const generatePdf = () => {
+        const doc = new jsPDF('p','px','a1')
+        doc.html(document.getElementById('table'), {
+            callback : (pdf)=> {
+                const pageCount = doc.internal.getNumberOfPages()
+                for(let i = 2; i <= pageCount; i++){
+                    pdf.deletePage(i)
+                }
+                pdf.save('usersTable.pdf')
+            }
+        })
+    }
+
     const handleEditToggle = (id) => {
         setIdForModal(id)
         setEditToggle(!editToggle)
@@ -45,7 +59,8 @@ const UserPage = (props) => {
             <h2>User Page</h2>
             {user.role === 'admin' ? (
                     <div>
-                        <table>
+                        <button onClick={generatePdf}>Download .pdf</button>
+                        <table id='table' className="table">
                             <thead>
                                 <tr>
                                     <th>Sr. no.</th>
@@ -86,8 +101,6 @@ const UserPage = (props) => {
                         <h4>Location - {user.city}, {user.state}, {user.country}</h4>
                     </div>
                 )
-
-               
             }
         </div>
     )

@@ -5,6 +5,7 @@ node_modules
 .pnp.js
 
 //Misc
+.env
 .jpg
 .jpeg
 .png
