@@ -14,7 +14,7 @@ const Register = (props) => {
    }
 
     return (
-        <div>
+        <div className="d-flex justify-content-center">
             <div className="card bg-light mb-3" style={{width : '40vw', minWidth : '300px'}}>
             <div className="card-header"><h4>Register as a New Account</h4></div>
             <div className="card-body">

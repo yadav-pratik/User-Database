@@ -62,37 +62,39 @@ const Login = (props) => {
     }
 
     return (
-        <div className="card bg-light mb-3" style={{width : '40vw', minWidth : '300px'}}>
-            <div className="card-header"><h4>Login to Your Account</h4></div>
-            <div className="card-body">
-            <form onSubmit={handleSubmit}>
-                <label>Enter your Login Id</label>
-                    <br/>
-                    <input
-                        className="form-control"
-                        type="text"
-                        value = {loginId}
-                        name = "loginId"
-                        onChange = {handleChange}
-                        placeholder="Email Or Username"
-                    />
-                    {formErrors.loginId ? <p style={validationStyle}>{formErrors.loginId}</p> : <br/>}
-                    <label>Enter your Password</label>
-                    <br/>
-                    <input
-                        className="form-control"
-                        type="password"
-                        value = {password}
-                        name = "password"
-                        onChange = {handleChange}
-                    />
-                    {formErrors.password ? <p style={validationStyle}>{formErrors.password}</p> : <br/>}
-                    <input
-                        className="btn btn-outline-primary"
-                        type="submit"
-                        value="Submit"
-                    />
-                </form>
+        <div className="d-flex justify-content-center">
+            <div className="card bg-light mb-3" style={{width : '40vw', minWidth : '300px'}}>
+                <div className="card-header"><h4>Login to Your Account</h4></div>
+                <div className="card-body">
+                <form onSubmit={handleSubmit}>
+                    <label>Enter your Login Id</label>
+                        <br/>
+                        <input
+                            className="form-control"
+                            type="text"
+                            value = {loginId}
+                            name = "loginId"
+                            onChange = {handleChange}
+                            placeholder="Email Or Username"
+                        />
+                        {formErrors.loginId ? <p style={validationStyle}>{formErrors.loginId}</p> : <br/>}
+                        <label>Enter your Password</label>
+                        <br/>
+                        <input
+                            className="form-control"
+                            type="password"
+                            value = {password}
+                            name = "password"
+                            onChange = {handleChange}
+                        />
+                        {formErrors.password ? <p style={validationStyle}>{formErrors.password}</p> : <br/>}
+                        <input
+                            className="btn btn-outline-primary"
+                            type="submit"
+                            value="Submit"
+                        />
+                    </form>
+                </div>
             </div>
         </div>
     )
