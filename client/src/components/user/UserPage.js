@@ -5,9 +5,11 @@ import { startGetUser } from '../../actions/userActions'
 import { startDeleteUser } from '../../actions/usersActions'
 
 import ModalForm from '../ModalForm'
+import ModalImage from '../ModalImage'
 
 const UserPage = (props) => {
     const [editToggle, setEditToggle] = useState(false)
+    const [imageToggle, setImageToggle] = useState(false)
     const [idForModal, setIdForModal] = useState('')
 
     const dispatch = useDispatch()
@@ -32,6 +34,11 @@ const UserPage = (props) => {
         setIdForModal(id)
         setEditToggle(!editToggle)
     }
+
+    const handleImageToggle = (id) => {
+        setIdForModal(id)
+        setImageToggle(!imageToggle)
+    }   
  
     return (
         <div>
@@ -58,11 +65,12 @@ const UserPage = (props) => {
                                         <td>{user.name}</td>
                                         <td>{user.mobile}</td>
                                         <td>{user.loginId}</td>
-                                        <td>show</td>
+                                        <td><button onClick={()=>{handleImageToggle(user._id)}}>Show</button></td>
                                         <td>
                                             <button onClick={()=>{handleEditToggle(user._id)}}>Edit</button>
                                             <button onClick={()=>{handleDelete(user._id)}}>Delete</button>
                                             {editToggle && idForModal === user._id && <ModalForm handleEditToggle={handleEditToggle} {...user}/>}
+                                            {imageToggle && idForModal === user._id && <ModalImage handleImageToggle={handleImageToggle} image={user.image}/>}
                                         </td>
                                     </tr>
                                 })}
