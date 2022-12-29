@@ -119,8 +119,10 @@ const UserForm = (props) => {
             errors.city = "You must select one City"
         }
 
-        if(image.length === 0){
-            errors.image = "You must select an image for Profile"
+        if(!handleEditToggle){
+            if(image.length === 0){
+                errors.image = "You must select an image for Profile"
+            }
         }
     }
 

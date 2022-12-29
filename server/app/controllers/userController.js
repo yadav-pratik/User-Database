@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken')
 const userController = {}
 
 userController.register = async (req, res) => {
-    console.log(req.file)
     const body = pick(req.body, ['name', 'mobile', 'loginId', 'password', 'country', 'state', 'city', 'description'])
     const bodyObj = req.file ? {...body, image : req.file.filename} : {...body}
     try {
@@ -76,10 +75,12 @@ userController.list = async (req, res) => {
 }
 
 userController.update = async (req, res) => {
+    console.log(req.file)
     const id = req.params.id
-    const body = pick(req.body, ['name', 'mobile', 'country', 'state', 'city', 'description', 'image'])
+    const body = pick(req.body, ['name', 'mobile', 'country', 'state', 'city', 'description'])
+    const bodyObj = req.file ? {...body, image : req.file.filename} : {...body}
     try {
-        const user = await User.findByIdAndUpdate(id, body, {new : true, runValidators: true})
+        const user = await User.findByIdAndUpdate(id, bodyObj, {new : true, runValidators: true})
         const userObj = JSON.parse(JSON.stringify(user))
         res.json(omit(userObj, ['password']))
     } catch (error) {

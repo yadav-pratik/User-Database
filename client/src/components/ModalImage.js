@@ -15,6 +15,7 @@ const ModalImage = (props) => {
                 <img
                     src={process.env.REACT_APP_IMAGE_PATH + image}
                     alt="user_image"
+                    width="400px"
                 />
             </Modal.Body>
         </Modal>

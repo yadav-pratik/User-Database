@@ -50,7 +50,8 @@ export const startUpdateUsers = (formData, clear, id) => {
         try {
             const { data } = await axios.put(`http://localhost:3400/api/user/update/${id}`, formData, {
                 headers : {
-                    authorization : localStorage.getItem('token')
+                    authorization : localStorage.getItem('token'),
+                    'Content-type' : 'multipart/form-data'
                 }
             })
             dispatch(updateUsers(data))

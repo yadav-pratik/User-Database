@@ -1,3 +1,16 @@
+# //dependencies
+
+# node_modules
+# /.pnp
+# .pnp.js
+
+# //Misc
+# /public
+# .env
+# .jpg
+# .jpeg
+# .png
+
 //dependencies
 
 node_modules
@@ -5,7 +18,9 @@ node_modules
 .pnp.js
 
 //Misc
+
+public
 .env
 .jpg
-.jpeg
 .png
+.JPG
