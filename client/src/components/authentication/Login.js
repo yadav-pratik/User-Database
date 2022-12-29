@@ -62,7 +62,7 @@ const Login = (props) => {
     }
 
     return (
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center mt-5">
             <div className="card bg-light mb-3" style={{width : '40vw', minWidth : '300px'}}>
                 <div className="card-header"><h4>Login to Your Account</h4></div>
                 <div className="card-body">

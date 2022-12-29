@@ -25,7 +25,10 @@ const NavBar = (props) => {
     }
 
     return (
-        <div className="d-flex justify-content-between mt-3 sticky-top">
+        <div 
+            className="d-flex justify-content-between align-items-center sticky-top"
+            style={{backgroundColor : '#e3c2df', color : 'black', height : '10vh', minHeight : '60px', maxHeight : '100px'}}
+        >
             <h1>Users Portal</h1>
             {isLogged ? (
                     <div>
