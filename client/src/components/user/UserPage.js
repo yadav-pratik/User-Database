@@ -59,8 +59,8 @@ const UserPage = (props) => {
             <h2>User Page</h2>
             {user.role === 'admin' ? (
                     <div>
-                        <button onClick={generatePdf}>Download .pdf</button>
-                        <table id='table' className="table">
+                        <button onClick={generatePdf} className="btn btn-outline-success">Download .pdf</button>
+                        <table id='table' className="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Sr. no.</th>
@@ -80,10 +80,23 @@ const UserPage = (props) => {
                                         <td>{user.name}</td>
                                         <td>{user.mobile}</td>
                                         <td>{user.loginId}</td>
-                                        <td><button onClick={()=>{handleImageToggle(user._id)}}>Show</button></td>
+                                        <td><button 
+                                                onClick={()=>{handleImageToggle(user._id)}}
+                                                className="btn btn-outline-primary"
+                                                >Show
+                                            </button>
+                                        </td>
                                         <td>
-                                            <button onClick={()=>{handleEditToggle(user._id)}}>Edit</button>
-                                            <button onClick={()=>{handleDelete(user._id)}}>Delete</button>
+                                            <button 
+                                                onClick={()=>{handleEditToggle(user._id)}}
+                                                className="btn btn-outline-primary"
+                                                >Edit
+                                            </button>
+                                            <button 
+                                                onClick={()=>{handleDelete(user._id)}}
+                                                className="btn btn-outline-danger"
+                                                >Delete
+                                            </button>
                                             {editToggle && idForModal === user._id && <ModalForm handleEditToggle={handleEditToggle} {...user}/>}
                                             {imageToggle && idForModal === user._id && <ModalImage handleImageToggle={handleImageToggle} image={user.image}/>}
                                         </td>
