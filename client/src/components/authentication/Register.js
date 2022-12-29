@@ -15,11 +15,14 @@ const Register = (props) => {
 
     return (
         <div>
-            <h2>Register as a new Account</h2>
-            < UserForm 
-                formSubmit={formSubmit}
-            />
-            
+            <div className="card bg-light mb-3" style={{width : '40vw', minWidth : '300px'}}>
+            <div className="card-header"><h4>Register as a New Account</h4></div>
+            <div className="card-body">
+                < UserForm
+                    formSubmit={formSubmit}
+                />
+            </div>
+            </div>
         </div>
     )
 }

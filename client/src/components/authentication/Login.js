@@ -32,8 +32,6 @@ const Login = (props) => {
 
         if(password.length === 0) {
             errors.password = "Password cannot be empty"
-        } else if(password.length < 8 || password.length > 128){
-            errors.password = "Password must be between 8 and 128 characters"
         }
     }
 
@@ -64,33 +62,38 @@ const Login = (props) => {
     }
 
     return (
-        <div>
-            <h2>Login to Your Account</h2>
+        <div className="card bg-light mb-3" style={{width : '40vw', minWidth : '300px'}}>
+            <div className="card-header"><h4>Login to Your Account</h4></div>
+            <div className="card-body">
             <form onSubmit={handleSubmit}>
-            <label>Enter your Login Id</label>
-                <br/>
-                <input
-                    type="text"
-                    value = {loginId}
-                    name = "loginId"
-                    onChange = {handleChange}
-                    placeholder="Email Or Username"
-                />
-                {formErrors.loginId ? <p style={validationStyle}>{formErrors.loginId}</p> : <><br/><br/></>}
-                <label>Enter your Password</label>
-                <br/>
-                <input
-                    type="password"
-                    value = {password}
-                    name = "password"
-                    onChange = {handleChange}
-                />
-                {formErrors.password ? <p style={validationStyle}>{formErrors.password}</p> : <><br/><br/></>}
-                <input
-                    type="submit"
-                    value="Submit"
-                />
-            </form>
+                <label>Enter your Login Id</label>
+                    <br/>
+                    <input
+                        className="form-control"
+                        type="text"
+                        value = {loginId}
+                        name = "loginId"
+                        onChange = {handleChange}
+                        placeholder="Email Or Username"
+                    />
+                    {formErrors.loginId ? <p style={validationStyle}>{formErrors.loginId}</p> : <br/>}
+                    <label>Enter your Password</label>
+                    <br/>
+                    <input
+                        className="form-control"
+                        type="password"
+                        value = {password}
+                        name = "password"
+                        onChange = {handleChange}
+                    />
+                    {formErrors.password ? <p style={validationStyle}>{formErrors.password}</p> : <br/>}
+                    <input
+                        className="btn btn-outline-primary"
+                        type="submit"
+                        value="Submit"
+                    />
+                </form>
+            </div>
         </div>
     )
 }

@@ -91,7 +91,6 @@ const UserPage = (props) => {
                                 })}
                             </tbody>
                         </table>
-                        
                     </div>
                 ) : (
                     <div>

@@ -167,43 +167,47 @@ const UserForm = (props) => {
                 <label>Enter your Name</label>
                 <br/>
                 <input
+                    className="form-control"
                     type="text"
                     value = {name}
                     name = "name"
                     onChange = {handleChange}
                 />
-                {formErrors.name ? <p style={validationStyle}>{formErrors.name}</p> : <><br/><br/></>}
+                {formErrors.name ? <p style={validationStyle}>{formErrors.name}</p> : <br/>}
                 <label>Enter your Mobile no.</label>
                 <br/>
                 <input
+                    className="form-control"
                     type="text"
                     value = {mobile}
                     name = "mobile"
                     onChange = {handleChange}
                 />
-                {formErrors.mobile ? <p style={validationStyle}>{formErrors.mobile}</p> : <><br/><br/></>}
+                {formErrors.mobile ? <p style={validationStyle}>{formErrors.mobile}</p> : <br/>}
                 {!handleEditToggle && <>
                     <label>Enter a Login Id</label>
                     <br/>
                     <input
+                        className="form-control"
                         type="text"
                         value = {loginId}
                         name = "loginId"
                         onChange = {handleChange}
                         placeholder="Email Or Username"
                     />
-                    {formErrors.loginId ? <p style={validationStyle}>{formErrors.loginId}</p> : <><br/><br/></>}
+                    {formErrors.loginId ? <p style={validationStyle}>{formErrors.loginId}</p> : <br/>}
                     <label>Enter a Password</label>
                     <br/>
                     <input
+                        className="form-control"
                         type="password"
                         value = {password}
                         name = "password"
                         onChange = {handleChange}
                         />
-                    {formErrors.password ? <p style={validationStyle}>{formErrors.password}</p> : <><br/><br/></>}
+                    {formErrors.password ? <p style={validationStyle}>{formErrors.password}</p> : <br/>}
                 </>}
-                <select value={country} name = "country" onChange={handleChange}>
+                <select value={country} name = "country" onChange={handleChange} className="form-control">
                     <option value = "">Select your Country</option>
                     {countries.map(c => {
                         return <option 
@@ -214,8 +218,8 @@ const UserForm = (props) => {
                         </option>
                     })}
                 </select>
-                {formErrors.country ? <p style={validationStyle}>{formErrors.country}</p> : <><br/><br/></>}
-                <select value={state} name = "state" onChange={handleChange}>
+                {formErrors.country ? <p style={validationStyle}>{formErrors.country}</p> : <br/>}
+                <select value={state} name = "state" onChange={handleChange} className="form-control">
                     <option value = "">Select your State</option>
                     {states.map((s, i) => {
                         return <option 
@@ -226,8 +230,8 @@ const UserForm = (props) => {
                         </option>
                     })}
                 </select>
-                {formErrors.state ? <p style={validationStyle}>{formErrors.state}</p> : <><br/><br/></>}
-                <select value={city} name = "city" onChange={handleChange}>
+                {formErrors.state ? <p style={validationStyle}>{formErrors.state}</p> : <br/>}
+                <select value={city} name = "city" onChange={handleChange} className="form-control">
                     <option value = "">Select your City</option>
                     {cities.map((c, i) => {
                         return <option 
@@ -238,26 +242,29 @@ const UserForm = (props) => {
                         </option>
                     })}
                 </select>
-                {formErrors.city ? <p style={validationStyle}>{formErrors.city}</p> : <><br/><br/></>}
+                {formErrors.city ? <p style={validationStyle}>{formErrors.city}</p> : <br/>}
                 <label>Enter a Description</label>
                 <br/>
                 <textarea
+                    className="form-control"
                     value={description}
                     onChange={handleChange}
                     name="description"
                 >
                 </textarea>
-                <br/><br/>
+                <br/>
                 <label>Select a Picture</label>
                 <br/>
                 <input
+                    className="form-control"
                     type="file"
                     accept=".jpg, .jpeg, .png"
                     onChange={handleChange}
                     name="image"
                 />
-                {formErrors.image ? <p style={validationStyle}>{formErrors.image}</p> : <><br/><br/></>}
+                {formErrors.image ? <p style={validationStyle}>{formErrors.image}</p> : <br/>}
                 <input
+                    className="btn btn-outline-primary"
                     type="submit"
                     value="Submit"
                 />
