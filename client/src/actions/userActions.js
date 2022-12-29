@@ -51,7 +51,9 @@ export const startGetUser = () => {
                     authorization : localStorage.getItem('token')
                 }
             })
-            dispatch(startGetUsers())
+            if(data.role === 'admin') {
+                dispatch(startGetUsers())
+            }
             dispatch(setUser(data))
         } catch (error) {
             alert(error)
