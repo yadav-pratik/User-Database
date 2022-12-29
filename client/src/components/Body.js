@@ -16,7 +16,6 @@ const Body = (props) => {
         <div>
             <Route path="/" component={isLogged ? UserPage : Login} exact/>
             <Route path="/register" component={Register} exact/>
-            {/* <Route path="/user-page" component={UserPage} exact/> */}
             <PrivateRoute path="/user-page" component={UserPage} exact/>
         </div>
     )

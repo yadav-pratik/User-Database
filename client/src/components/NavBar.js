@@ -21,6 +21,7 @@ const NavBar = (props) => {
         localStorage.removeItem('token')
         dispatch(logoutUser())
         dispatch(toggleIsLogged())
+        alert('Successfully Logged Out!')
         props.history.push('/')
     }
 
