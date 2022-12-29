@@ -25,12 +25,12 @@ const NavBar = (props) => {
     }
 
     return (
-        <div>
+        <div className="d-flex justify-content-between mt-3 sticky-top">
             <h1>Users Portal</h1>
             {isLogged ? (
                     <div>
                         <span>Welcome {user.name}</span>
-                        <button onClick={handleLogout}>Logout</button>
+                        <button onClick={handleLogout} className="btn btn-outline-danger">Logout</button>
                     </div>
                 ) : (
                     <div>
