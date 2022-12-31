@@ -5,7 +5,7 @@ export const startGetStates = (country) => {
         try {
             const {data} = await axios.get(`https://www.universal-tutorial.com/api/states/${country}`, {
                 headers : {
-                    Authorization : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJsb3Jvd29tNzM0QHJhenV6LmNvbSIsImFwaV90b2tlbiI6InVvQkdQWDdVcWZRQU5ZcHlUYUIwLWthVGtnLXpsOFdiaG9jQ2paNXpHQUdBRFZZbkV5R0FPMFp3aXMzUjlUVnFqQU0ifSwiZXhwIjoxNjcyMzIwOTQzfQ.sXfbcuQHbGkd0Am_xvvTrKoNXkE2hj7HN-pbKfKW1Lk'
+                    Authorization : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJ1ZWwxNTY1MEB4Y294Yy5jb20iLCJhcGlfdG9rZW4iOiJFYkstM3ZjWk1fN2lsRmRNVXRvbmRNODBLdWdzVm1JZmc3aEU5YnZ3eXU0R0lfa0NoMkxtRU9lb3RyMjViVE9jVm9RIn0sImV4cCI6MTY3MjU3NjU0MX0.sThuDuZhEWY8UnYty0yQT4oouCcZpEIWVAKY4NJYXok'
                 }
             })
             dispatch(setStates(data))
