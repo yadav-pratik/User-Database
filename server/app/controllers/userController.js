@@ -75,7 +75,6 @@ userController.list = async (req, res) => {
 }
 
 userController.update = async (req, res) => {
-    console.log(req.file)
     const id = req.params.id
     const body = pick(req.body, ['name', 'mobile', 'country', 'state', 'city', 'description'])
     const bodyObj = req.file ? {...body, image : req.file.filename} : {...body}
