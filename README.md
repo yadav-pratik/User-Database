@@ -62,3 +62,9 @@ npm start
 ```
 
 Note : Add all the environment variables for best experience.
+
+Visit the following link and generate your api-key for the country, state and city APIs, and replace your key with mine inside all the action files.
+
+```
+https://www.universal-tutorial.com/rest-apis/free-rest-api-for-country-state-city
+```
